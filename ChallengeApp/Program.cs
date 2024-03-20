@@ -1,40 +1,27 @@
 ﻿// See https://aka.ms/new-console-template for more information
-var name = "Ewa";
-var sex = 'M';
-var age = 15;
 
-Console.WriteLine("===== wersja 1 =====");
+int number = 701789;
+List<int> digits = new List<int>();
 
-if (sex == 'K' && age < 30)
-    Console.WriteLine("Kobieta poniżej 30 lat");
-if (name == "Ewa" && age == 30)
-    Console.WriteLine("Ewa, lat 30");
-if (sex == 'M' && age < 18)
-    Console.WriteLine("Niepełnoletni mężczyzna");
-
-Console.WriteLine("===== wersja 2 =====");
-
-if (age == 30) {
-    if (name == "Ewa")
-        Console.WriteLine("Ewa, lat 30");
-} else if (age < 30) {
-    if (sex == 'K')
-        Console.WriteLine("Kobieta poniżej 30 lat");
-    if (sex == 'M' && age < 18)
-        Console.WriteLine("Niepełnoletni mężczyzna");
+for (int i = 0; i < 10; i++)
+{
+    digits.Add(0);
 }
 
-Console.WriteLine("===== wersja 3 =====");
+string numberAsString = number.ToString();
+char[] numberAsChararray = numberAsString.ToCharArray();
 
-if (age == 30 && name == "Ewa")
+for (int i = 0; i < numberAsChararray.Length; i++)
 {
-    Console.WriteLine("Ewa, lat 30");
+    int j = Convert.ToInt32(numberAsChararray[i]) - 48;
+    int k = digits[j];
+    digits[j] = ++k;
 }
-else if (age < 30 && sex == 'K')
+
+Console.WriteLine("Wyniki dla liczby: " + number);
+
+int ii = 0;
+foreach (var digit in digits)
 {
-    Console.WriteLine("Kobieta poniżej 30 lat");
-} 
-else if (sex == 'M' && age < 18)
-{ 
-    Console.WriteLine("Niepełnoletni mężczyzna");
+    Console.WriteLine(ii++ + " => " + digit);
 }
