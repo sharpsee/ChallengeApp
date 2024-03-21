@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-int number = 701789;
+int number = 103450;
 List<int> digits = new List<int>();
 
 for (int i = 0; i < 10; i++)
@@ -14,8 +14,7 @@ char[] numberAsChararray = numberAsString.ToCharArray();
 for (int i = 0; i < numberAsChararray.Length; i++)
 {
     int j = Convert.ToInt32(numberAsChararray[i]) - 48;
-    int k = digits[j];
-    digits[j] = ++k;
+    digits[j]++;
 }
 
 Console.WriteLine("Wyniki dla liczby: " + number);
