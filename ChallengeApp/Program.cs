@@ -1,26 +1,43 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ChallengeApp;
 
-int number = 103450;
-List<int> digits = new List<int>();
+Employee employee1 = new Employee("Adam", "Abacki", 23);
+Employee employee2 = new Employee("Kazik", "Babacki", 37);
+Employee employee3 = new Employee("Tomek", "Cabacki", 33);
 
-for (int i = 0; i < 10; i++)
+employee1.addScore(10);
+employee1.addScore(7);
+employee1.addScore(6);
+employee1.addScore(5);
+employee1.addScore(2);
+
+employee2.addScore(6);
+employee2.addScore(9);
+employee2.addScore(2);
+employee2.addScore(9);
+employee2.addScore(6);
+
+employee3.addScore(1);
+employee3.addScore(8);
+employee3.addScore(2);
+employee3.addScore(10);
+employee3.addScore(7);
+
+List<Employee> employees = new List<Employee>
+    { employee1, employee2, employee3};
+
+Employee employeeWithMaxResult = employee1;
+int maxResult = employee1.TotalScore;
+
+foreach (var employee in employees)
 {
-    digits.Add(0);
+    if (maxResult < employee.TotalScore)
+    { 
+        maxResult = employee.TotalScore;
+        employeeWithMaxResult = employee;
+    }
 }
 
-string numberAsString = number.ToString();
-char[] numberAsChararray = numberAsString.ToCharArray();
-
-for (int i = 0; i < numberAsChararray.Length; i++)
-{
-    int j = Convert.ToInt32(numberAsChararray[i]) - 48;
-    digits[j]++;
-}
-
-Console.WriteLine("Wyniki dla liczby: " + number);
-
-int ii = 0;
-foreach (var digit in digits)
-{
-    Console.WriteLine(ii++ + " => " + digit);
-}
+Console.WriteLine("Odnaleziono: " 
+    + employeeWithMaxResult.FirstName + " "
+    + employeeWithMaxResult.FamilyName + " z wynikiem "
+    + employeeWithMaxResult.TotalScore);
