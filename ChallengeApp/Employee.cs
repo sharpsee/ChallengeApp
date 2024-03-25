@@ -19,9 +19,13 @@
             this.FamilyName = familyName;
             this.Age = age;
         }
-        public void addScore(int point)
+        public void AddScore(int point)
         {
             this.points.Add(point);
+        }
+        public void SubstractScore(int point)
+        {
+            this.points.Add(-1 * point);
         }
     }
 }
