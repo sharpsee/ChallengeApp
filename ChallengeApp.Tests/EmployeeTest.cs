@@ -5,6 +5,14 @@ namespace ChallengeApp.Tests
     public class EmployeeTest
     {
         [Test]
+        public void WhenGetEmployees_ShouldReturnDifferentObjects()
+        {
+            var employee1 = new Employee("Adam", "Borecki", 24);
+            var employee2 = new Employee("Adam", "Borecki", 24);
+            Assert.AreNotEqual(employee1, employee2);
+        }
+
+        [Test]
         public void WhenEmployeeAddTwoPoints_ShouldReturnCorrectTotalScore()
         {
             var employee1 = new Employee("Teofil", "Dabacki", 44);
