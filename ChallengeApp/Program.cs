@@ -1,43 +1,35 @@
 ﻿using ChallengeApp;
 
-Employee employee1 = new Employee("Adam", "Abacki", 23);
-Employee employee2 = new Employee("Kazik", "Babacki", 37);
-Employee employee3 = new Employee("Tomek", "Cabacki", 33);
+Employee employee1 = new Employee("Adam", "Abacki");
+Employee employee2 = new Employee("Kazik", "Babacki");
+Employee employee3 = new Employee("Tomek", "Cabacki");
 
-employee1.AddScore(10);
-employee1.AddScore(7);
-employee1.AddScore(6);
-employee1.AddScore(5);
-employee1.AddScore(2);
+employee1.AddGrade((float)4.8);
+employee1.AddGrade((float)7.1);
+employee1.AddGrade((float)6.3);
+employee1.AddGrade((float)15.7);
+employee1.AddGrade((float)8.5);
 
-employee2.AddScore(6);
-employee2.AddScore(9);
-employee2.AddScore(2);
-employee2.AddScore(9);
-employee2.AddScore(6);
+employee2.AddGrade(6);
+employee2.AddGrade(9);
+employee2.AddGrade(2);
+employee2.AddGrade(9);
+employee2.AddGrade(6);
 
-employee3.AddScore(1);
-employee3.AddScore(8);
-employee3.AddScore(2);
-employee3.AddScore(10);
-employee3.AddScore(7);
+employee3.AddGrade(1);
+employee3.AddGrade(8);
+employee3.AddGrade(2);
+employee3.AddGrade(10);
+employee3.AddGrade(7);
 
 List<Employee> employees = new List<Employee>
     { employee1, employee2, employee3};
 
-Employee employeeWithMaxResult = employee1;
-int maxResult = employee1.TotalScore;
-
 foreach (var employee in employees)
 {
-    if (maxResult < employee.TotalScore)
-    { 
-        maxResult = employee.TotalScore;
-        employeeWithMaxResult = employee;
-    }
-}
+    var statistics = employee.GetStatistics();
 
-Console.WriteLine("Odnaleziono: " 
-    + employeeWithMaxResult.FirstName + " "
-    + employeeWithMaxResult.FamilyName + " z wynikiem "
-    + employeeWithMaxResult.TotalScore);
+    Console.WriteLine($"Average: {statistics.Average:N2}");
+    Console.WriteLine($"Min: {statistics.Min}");
+    Console.WriteLine($"Max: {statistics.Max}");
+}

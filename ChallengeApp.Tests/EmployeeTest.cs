@@ -7,41 +7,48 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenGetEmployees_ShouldReturnDifferentObjects()
         {
-            var employee1 = new Employee("Adam", "Borecki", 24);
-            var employee2 = new Employee("Adam", "Borecki", 24);
+            var employee1 = new Employee("Adam", "Borecki");
+            var employee2 = new Employee("Adam", "Borecki");
             Assert.AreNotEqual(employee1, employee2);
         }
 
         [Test]
-        public void WhenEmployeeAddTwoPoints_ShouldReturnCorrectTotalScore()
+        public void WhenEmployeeAddsFiveGrades_ShouldReturnCorrectAverage()
         {
-            var employee1 = new Employee("Teofil", "Dabacki", 44);
-            employee1.AddScore(5);
-            employee1.AddScore(6);
-            var result = employee1.TotalScore;
-            Assert.AreEqual(11, result);
+            var employee1 = new Employee("Teofil", "Dabacki");
+            employee1.AddGrade((float)4.8);
+            employee1.AddGrade((float)7.1);
+            employee1.AddGrade((float)6.3);
+            employee1.AddGrade((float)15.7);
+            employee1.AddGrade((float)8.5);
+            var statistics = employee1.GetStatistics();
+            Assert.AreEqual((float)8.4800005, statistics.Average);
         }
 
         [Test]
-        public void WhenEmployeeAddAndSubstractsTheSamePoints_ShouldReturnZero()
+        public void WhenEmployeeAddsFiveGrades_ShouldReturnCorrectMinimum()
         {
-            var employee1 = new Employee("Teofil", "Dabacki", 44);
-            employee1.AddScore(3);
-            employee1.AddScore(4);
-            employee1.SubstractScore(7);
-            var result = employee1.TotalScore;
-            Assert.Zero(result);
+            var employee1 = new Employee("Teofil", "Dabacki");
+            employee1.AddGrade((float)4.8);
+            employee1.AddGrade((float)7.1);
+            employee1.AddGrade((float)6.3);
+            employee1.AddGrade((float)15.7);
+            employee1.AddGrade((float)8.5);
+            var statistics = employee1.GetStatistics();
+            Assert.AreEqual((float)4.8, statistics.Min);
         }
 
         [Test]
-        public void WhenEmployeeAddPointsAndSubstractsMore_ShouldReturnLessThanZero()
+        public void WhenEmployeeAddsFiveGrades_ShouldReturnCorrectMaximum()
         {
-            var employee1 = new Employee("Teofil", "Dabacki", 44);
-            employee1.AddScore(1);
-            employee1.AddScore(2);
-            employee1.SubstractScore(7);
-            var result = employee1.TotalScore;
-            Assert.Less(result, 0);
+            var employee1 = new Employee("Teofil", "Dabacki");
+            employee1.AddGrade((float)4.8);
+            employee1.AddGrade((float)7.1);
+            employee1.AddGrade((float)6.3);
+            employee1.AddGrade((float)15.7);
+            employee1.AddGrade((float)8.5);
+            var statistics = employee1.GetStatistics();
+            Assert.AreEqual((float)15.7, statistics.Max);
         }
     }
 }
