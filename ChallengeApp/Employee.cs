@@ -30,11 +30,46 @@
         }
         public void AddGrade(float grade)
         {
-            this.grades.Add(grade);
+            if (grade >= 0 && grade <= 100)
+                this.grades.Add(grade);
+            else
+                Console.WriteLine("Grade value exceeds the allowable range!");
         }
-        public void SubstractGrade(float grade)
+
+        public void AddGrade(string grade)
         {
-            this.grades.Add(-1 * grade);
+            if (float.TryParse(grade, out float result))
+                this.AddGrade(result);
+            else
+                Console.WriteLine("Grade value is not float!");
+        }
+
+        public void AddGrade(int grade)
+        {
+            var value = (float)grade;
+            this.AddGrade(value);
+        }
+
+        public void AddGrade(long grade)
+        {
+            if (grade >= float.MinValue && grade <= float.MaxValue)
+            {
+                var value = (float)grade;
+                this.AddGrade(value);
+            }
+            else
+                Console.WriteLine("Grade value can not be converted to float!");
+        }
+
+        public void AddGrade(double grade)
+        {
+            if (grade >= float.MinValue && grade <= float.MaxValue)
+            {
+                var value = (float)grade;
+                this.AddGrade(value);
+            }
+            else
+                Console.WriteLine("Grade value can not be converted to float!");
         }
     }
 }
