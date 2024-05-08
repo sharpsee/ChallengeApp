@@ -12,7 +12,14 @@ while (true)
     var input = Console.ReadLine();
     if (input == "q")
         break;
-    employee.AddGrade(input);
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Wyjątek przechwycony: {ex.Message}");
+    }
 }
 
 var statistics = employee.GetStatistics();
