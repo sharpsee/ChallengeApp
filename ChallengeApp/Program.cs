@@ -1,10 +1,6 @@
 ﻿using ChallengeApp;
 
-Console.WriteLine("Program do oceny pracowników");
-Console.WriteLine("============================");
-Console.WriteLine();
-
-Employee employee = new Employee();
+Supervisor supervisor = new Supervisor();
 
 while (true)
 {
@@ -14,7 +10,7 @@ while (true)
         break;
     try
     {
-        employee.AddGrade(input);
+        supervisor.AddGrade(input);
     }
     catch (Exception ex)
     {
@@ -22,9 +18,9 @@ while (true)
     }
 }
 
-var statistics = employee.GetStatistics();
+var statistics = supervisor.GetStatistics();
 
-Console.WriteLine(employee.FirstName + " " + employee.FamilyName);
+Console.WriteLine(supervisor.FirstName + " " + supervisor.FamilyName);
 Console.WriteLine($"Average: {statistics.Average:N2}");
 Console.WriteLine($"Average Letter: {statistics.AverageLetter}");
 Console.WriteLine($"Min: {statistics.Min}");

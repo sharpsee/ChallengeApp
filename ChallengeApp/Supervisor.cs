@@ -1,12 +1,12 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
         private List<float> grades = new List<float>();
-        public Employee() : this("nieznane imię", "nieznane nazwisko")
+        public Supervisor() : this("nieznane imię", "nieznane nazwisko")
         {  }
 
-        public Employee(string firstName, string familyName)
+        public Supervisor(string firstName, string familyName)
         {  
             this.FirstName = firstName;
             this.FamilyName = familyName;
@@ -26,10 +26,37 @@
 
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
-                this.AddGrade(result);
+            string digit = "";
+            float fgrade = 0.0f;
+            float modify = 5.0f;
+            int pos = 0;
+
+            if (grade.Contains("+"))
+                pos = grade.IndexOf('+');
+
+            if (grade.Contains("-"))
+            {
+                modify = -5.0f;
+                pos = grade.IndexOf('-');
+            }
+
+            if (pos > 0)
+                digit = grade.Substring(0, pos);
             else
-                throw new Exception("Grade value is not float!");
+                digit = grade.Substring(1, grade.Length - 1);
+
+            switch (digit)
+            {
+                case "1": fgrade =   0.0f; break;
+                case "2": fgrade =  20.0f; break;
+                case "3": fgrade =  40.0f; break;
+                case "4": fgrade =  60.0f; break;
+                case "5": fgrade =  80.0f; break;
+                case "6": fgrade = 100.0f; break;
+            }
+
+            fgrade += modify;
+            this.AddGrade(fgrade);
         }
 
         public void AddGrade(int grade)
