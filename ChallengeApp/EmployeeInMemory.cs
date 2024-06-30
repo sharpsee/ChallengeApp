@@ -1,22 +1,16 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
         private List<float> grades = new List<float>();
-        public Employee() : this("nieznane imię", "nieznane nazwisko")
+        public EmployeeInMemory() : this("unknown name", "unknown surname")
         {  }
 
-        public Employee(string firstName, string familyName)
-        {  
-            this.FirstName = firstName;
-            this.FamilyName = familyName;
-         }
+        public EmployeeInMemory(string firstName, string familyName)
+            : base(firstName, familyName)
+        { }
 
-        public string FirstName { get; private set; }
-
-        public string FamilyName { get; private set; }
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
                 this.grades.Add(grade);
@@ -24,7 +18,7 @@
                 throw new Exception("Grade value exceeds the allowable range!");
         }
 
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
                 this.AddGrade(result);
@@ -32,13 +26,13 @@
                 throw new Exception("Grade value is not float!");
         }
 
-        public void AddGrade(int grade)
+        public override void AddGrade(int grade)
         {
             var value = (float)grade;
             this.AddGrade(value);
         }
 
-        public void AddGrade(char grade)
+        public override void AddGrade(char grade)
         {
             switch (grade)
             {
@@ -62,7 +56,7 @@
             }
         }
 
-        public void AddGrade(long grade)
+        public override void AddGrade(long grade)
         {
             if (grade >= float.MinValue && grade <= float.MaxValue)
             {
@@ -73,7 +67,7 @@
                 throw new Exception("Grade value can not be converted to float!");
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             if (grade >= float.MinValue && grade <= float.MaxValue)
             {
@@ -84,7 +78,7 @@
                 throw new Exception("Grade value can not be converted to float!");
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Average = 0;

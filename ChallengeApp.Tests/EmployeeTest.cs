@@ -7,15 +7,15 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenGetEmployees_ShouldReturnDifferentObjects()
         {
-            var employee1 = new Employee("Adam", "Borecki");
-            var employee2 = new Employee("Adam", "Borecki");
+            var employee1 = new EmployeeInMemory("Adam", "Borecki");
+            var employee2 = new EmployeeInMemory("Adam", "Borecki");
             Assert.AreNotEqual(employee1, employee2);
         }
 
         [Test]
         public void WhenEmployeeAddsFiveGrades_ShouldReturnCorrectAverage()
         {
-            var employee1 = new Employee();
+            var employee1 = new EmployeeInMemory();
             employee1.AddGrade((float)4.8);
             employee1.AddGrade((float)7.1);
             employee1.AddGrade((float)6.3);
@@ -28,7 +28,7 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenEmployeeAddsFiveGrades_ShouldReturnCorrectMinimum()
         {
-            var employee1 = new Employee();
+            var employee1 = new EmployeeInMemory();
             employee1.AddGrade((float)4.8);
             employee1.AddGrade((float)7.1);
             employee1.AddGrade((float)6.3);
@@ -41,7 +41,7 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenEmployeeAddsFiveGrades_ShouldReturnCorrectMaximum()
         {
-            var employee1 = new Employee();
+            var employee1 = new EmployeeInMemory();
             employee1.AddGrade((float)4.8);
             employee1.AddGrade((float)7.1);
             employee1.AddGrade((float)6.3);
@@ -54,7 +54,7 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenEmployeeAddsFiveGrades_ShouldReturnCorrectAverageLetter()
         {
-            var employee1 = new Employee();
+            var employee1 = new EmployeeInMemory();
             employee1.AddGrade((float)4.8);
             employee1.AddGrade((float)7.1);
             employee1.AddGrade((float)6.3);
