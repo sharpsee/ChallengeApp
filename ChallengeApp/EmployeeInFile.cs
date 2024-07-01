@@ -14,10 +14,8 @@
 
         public override void AddGrade(int grade)
         {
-            using (var writer = File.AppendText(fileName))
-            {
-                writer.Write(grade);
-            }
+            var value = (float)grade;
+            this.AddGrade(value);
         }
 
         public override void AddGrade(float grade)
@@ -30,34 +28,56 @@
 
         public override void AddGrade(string grade)
         {
-            using (var writer = File.AppendText(fileName))
-            {
-                writer.Write(grade);
-            }
+            if (float.TryParse(grade, out float result))
+                this.AddGrade(result);
+            else
+                throw new Exception("Grade value is not float!");
         }
 
         public override void AddGrade(char grade)
         {
-            using (var writer = File.AppendText(fileName))
+            switch (grade)
             {
-                writer.Write(grade);
+                case 'A':
+                case 'a':
+                    this.AddGrade(100.0f); break;
+                case 'B':
+                case 'b':
+                    this.AddGrade(80.0f); break;
+                case 'C':
+                case 'c':
+                    this.AddGrade(60.0f); break;
+                case 'D':
+                case 'd':
+                    this.AddGrade(40.0f); break;
+                case 'E':
+                case 'e':
+                    this.AddGrade(20.0f); break;
+                default:
+                    throw new Exception("Wrong letter!");
             }
         }
 
         public override void AddGrade(long grade)
         {
-            using (var writer = File.AppendText(fileName))
+            if (grade >= float.MinValue && grade <= float.MaxValue)
             {
-                writer.Write(grade);
+                var value = (float)grade;
+                this.AddGrade(value);
             }
+            else
+                throw new Exception("Grade value can not be converted to float!");
         }
 
         public override void AddGrade(double grade)
         {
-            using (var writer = File.AppendText(fileName))
+            if (grade >= float.MinValue && grade <= float.MaxValue)
             {
-                writer.Write(grade);
+                var value = (float)grade;
+                this.AddGrade(value);
             }
+            else
+                throw new Exception("Grade value can not be converted to float!");
         }
 
         public override Statistics GetStatistics()
