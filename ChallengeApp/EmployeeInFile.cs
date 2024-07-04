@@ -2,21 +2,15 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
         public EmployeeInFile()
-        {
-        }
+        { }
 
         public EmployeeInFile(string firstName, string familyName) 
             : base(firstName, familyName)
-        {
-        }
-
-        public override void AddGrade(int grade)
-        {
-            var value = (float)grade;
-            this.AddGrade(value);
-        }
+        { }
 
         public override void AddGrade(float grade)
         {
@@ -24,6 +18,17 @@
             {
                 writer.Write(grade);
             }
+
+            if (GradeAdded != null)
+            {
+                GradeAdded(this, new EventArgs());
+            }
+        }
+
+        public override void AddGrade(int grade)
+        {
+            var value = (float)grade;
+            this.AddGrade(value);
         }
 
         public override void AddGrade(string grade)

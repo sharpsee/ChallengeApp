@@ -5,7 +5,13 @@ Console.WriteLine("=======================================");
 Console.WriteLine("");
 
 var employee = new EmployeeInFile();
+employee.GradeAdded += EmployeeGradeAdded;
 employee.AddGrade(0.5f);
+
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nową ocenę");
+}
 
 var statistics = employee.GetStatistics();
 Console.WriteLine(employee.FirstName + " " + employee.FamilyName);
