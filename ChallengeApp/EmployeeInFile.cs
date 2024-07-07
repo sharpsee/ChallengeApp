@@ -14,14 +14,22 @@
 
         public override void AddGrade(float grade)
         {
-            using (var writer = File.AppendText(fileName))
+            if (grade >= 0 && grade <= 100)
             {
-                writer.Write(grade);
-            }
+                using (var writer = File.AppendText(fileName))
+                {
+                    writer.Write(grade);
+                    writer.Write('\n');
+                }
 
-            if (GradeAdded != null)
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
             {
-                GradeAdded(this, new EventArgs());
+                throw new Exception("Grade value exceeds the allowable range!");
             }
         }
 
@@ -88,11 +96,6 @@
         public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            int count = 0;
 
             if (File.Exists(fileName))
             {
@@ -103,35 +106,9 @@
                     {
                         if (float.TryParse(line, out float result))
                         {
-                            statistics.Max = Math.Max(statistics.Max, result);
-                            statistics.Min = Math.Min(statistics.Min, result);
-                            statistics.Average += result;
-                            count++;
+                            statistics.AddGrade(result);
                         }
                         line = reader.ReadLine();
-                    }
-                }
-                if (count > 0)
-                {
-                    statistics.Average /= count;
-
-                    switch (statistics.Average)
-                    {
-                        case var average when average >= 80:
-                            statistics.AverageLetter = 'A';
-                            break;
-                        case var average when average >= 60:
-                            statistics.AverageLetter = 'B';
-                            break;
-                        case var average when average >= 40:
-                            statistics.AverageLetter = 'C';
-                            break;
-                        case var average when average >= 20:
-                            statistics.AverageLetter = 'D';
-                            break;
-                        default:
-                            statistics.AverageLetter = 'E';
-                            break;
                     }
                 }
             }

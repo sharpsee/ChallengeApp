@@ -5,23 +5,13 @@ Console.WriteLine("=======================================");
 Console.WriteLine("");
 
 var employee = new EmployeeInFile();
-employee.GradeAdded += EmployeeGradeAdded;
-employee.AddGrade(0.5f);
 
 void EmployeeGradeAdded(object sender, EventArgs args)
 {
     Console.WriteLine("Dodano nową ocenę");
 }
 
-var statistics = employee.GetStatistics();
-Console.WriteLine(employee.FirstName + " " + employee.FamilyName);
-Console.WriteLine($"Average: {statistics.Average:N2}");
-Console.WriteLine($"Average Letter: {statistics.AverageLetter}");
-Console.WriteLine($"Min: {statistics.Min}");
-Console.WriteLine($"Max: {statistics.Max}");
-
-/*
-Supervisor supervisor = new Supervisor();
+employee.GradeAdded += EmployeeGradeAdded;
 
 while (true)
 {
@@ -31,7 +21,7 @@ while (true)
         break;
     try
     {
-        supervisor.AddGrade(input);
+        employee.AddGrade(input);
     }
     catch (Exception ex)
     {
@@ -39,11 +29,10 @@ while (true)
     }
 }
 
-var statistics = supervisor.GetStatistics();
+var statistics = employee.GetStatistics();
 
-Console.WriteLine(supervisor.FirstName + " " + supervisor.FamilyName);
+Console.WriteLine(employee.FirstName + " " + employee.FamilyName);
 Console.WriteLine($"Average: {statistics.Average:N2}");
 Console.WriteLine($"Average Letter: {statistics.AverageLetter}");
 Console.WriteLine($"Min: {statistics.Min}");
 Console.WriteLine($"Max: {statistics.Max}");
-*/
